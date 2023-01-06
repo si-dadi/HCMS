@@ -1,0 +1,52 @@
+[debug] [2023-01-06T05:00:53.365Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T05:00:53.367Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shoba\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-01-06T05:00:53.367Z] CLI Version:   11.16.1
+[debug] [2023-01-06T05:00:53.367Z] Platform:      win32
+[debug] [2023-01-06T05:00:53.368Z] Node Version:  v16.16.0
+[debug] [2023-01-06T05:00:53.375Z] Time:          Fri Jan 06 2023 10:30:53 GMT+0530 (India Standard Time)
+[debug] [2023-01-06T05:00:53.375Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-06T05:00:53.380Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-01-06T05:00:53.474Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T05:00:53.475Z] > authorizing via signed-in user (f20210528@hyderabad.bits-pilani.ac.in)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Projects\hcms_v1.2
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2023-01-06T05:00:54.446Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-06T05:00:54.446Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-01-06T05:01:06.646Z] Using project from CLI flag: hcms-bphc
+[debug] [2023-01-06T05:01:06.647Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T05:01:06.649Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T05:01:06.649Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T05:01:10.453Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-06T05:01:10.453Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T05:01:10.479Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hcms-bphc [none]
+[debug] [2023-01-06T05:01:14.515Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hcms-bphc 200
+[debug] [2023-01-06T05:01:14.515Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hcms-bphc {"projectId":"hcms-bphc","projectNumber":"1066970540701","displayName":"HCMS","name":"projects/hcms-bphc","resources":{"hostingSite":"hcms-bphc","realtimeDatabaseInstance":"hcms-bphc-default-rtdb"},"state":"ACTIVE","etag":"1_67aadad6-b758-4b23-b9c3-bec417f7cb3e"}
+[info] i  Using project hcms-bphc (HCMS) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

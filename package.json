@@ -1,0 +1,60 @@
+{
+  "name": "hcms_v1.1",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "^2.16.0",
+    "@headlessui/react": "^1.7.4",
+    "@heroicons/react": "^2.0.13",
+    "@material-tailwind/react": "^1.2.4",
+    "@syncfusion/ej2-react-calendars": "^20.3.56",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.2",
+    "date-fns": "^2.29.3",
+    "firebase": "^9.14.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.6.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
+    "react-modal": "^3.16.1",
+    "react-responsive-modal": "^6.2.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.6.1",
+    "react-toastify": "^9.1.1",
+    "sw-precache": "^5.2.1",
+    "uid": "^2.0.1",
+    "underscore": "^1.13.6",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}

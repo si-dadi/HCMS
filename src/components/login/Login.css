@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login{
+    color: black;
+}
+
+image{
+    scale: 1.5;
+}

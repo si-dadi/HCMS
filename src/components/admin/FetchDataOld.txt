@@ -1,0 +1,218 @@
+import "../login/config";
+import React from "react";
+import "react-responsive-modal/styles.css";
+import { ref, onValue } from "firebase/database";
+import { dbase } from "../login/config";
+import { CrudPanel } from "./GetData";
+
+let uniqueNumber = 0;
+const dbRefAll = ref(dbase, "Complaints");
+var allRecords = [];
+var filteredArray = [];
+
+// Update Lists
+
+onValue(dbRefAll, (snapshot) => {
+  snapshot.forEach((childSnapshot) => {
+    let keyName = childSnapshot.key;
+    let data = childSnapshot.val();
+    allRecords.push({ key: keyName, data: data });
+  });
+});
+
+const filteredData = (Data) => {
+  if (Data.time === "All Complains") {
+    if (Data.hostelName === "All Hostels") {
+      if (Data.deptName === "All Depts") {
+        filteredArray = [...new Set([...allRecords, ...filteredArray])]; //000
+      } else
+        filteredArray = allRecords.filter(
+          (value) => value.data.dept === Data.deptName //00x
+        );
+    } else if (Data.deptName === "All Depts") {
+      filteredArray = allRecords.filter(
+        (value) => value.data.hostel === Data.hostelName //0x0
+      );
+    } else {
+      filteredArray = allRecords
+        .filter(
+          (value) => value.data.hostel === Data.hostelName //0xx
+        )
+        .filter(
+          (value) => value.data.dept === this.props.FilterData.deptName
+        );
+    }
+  }
+
+  if (Data.time !== "All Complains") {
+    if (Data.hostelName === "All Hostels") {
+      if (Data.deptName === "All Depts") {
+        filteredArray = allRecords.filter(
+          (value) => value.data.status === Data.time //x00
+        );
+      } else
+        filteredArray = allRecords
+          .filter(
+            (value) => value.data.dept === Data.deptName //x0x
+          )
+          .filter(
+            (value) => value.data.status === Data.time
+          );
+    } else if (Data.deptName === "All Depts") {
+      filteredArray = allRecords
+        .filter(
+          (value) => value.data.hostel === Data.hostelName //xx0
+        )
+        .filter((value) => value.data.status === Data.time);
+    } else {
+      filteredArray = allRecords
+        .filter(
+          (value) => value.data.hostel === Data.hostelName //xxx
+        )
+        .filter((value) => value.data.dept === Data.deptName)
+        .filter((value) => value.data.status === Data.time);
+    }
+  }
+
+  return filteredArray;
+}
+
+export class RealTimeData extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      tableData: [],
+    };
+  }
+  
+
+  //TIME filteredArray = query(ref(dbase, 'Complaints'), orderByChild('Status'), equalTo(this.props.FilterData.time))
+  //HOSTEL filteredArray = query(ref(dbase, 'Complaints'), orderByChild('Hostel'), equalTo(this.props.FilterData.hostelName))
+  //DEPT filteredArray = query(ref(dbase, 'Complaints'), orderByChild('Dept'), equalTo(this.props.FilterData.deptName))
+
+  render() {
+    filteredData(this.props.FilterData)
+
+    this.setState({ tableData: allRecords.reverse() });
+    // this.setState({ tableData: filteredArray.reverse() });
+    console.log(this.props.FilterData);
+    console.log(filteredArray);
+
+    return (
+      <>
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full">
+                  <thead class="bg-black/80 border-b">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        #
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Dept
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Hostel
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Room Number
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Contact Details
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Issue
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Availability Time
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-white px-6 py-4 "
+                      >
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="tbody1">
+                    {this.state.tableData.map((row, index) => {
+                      return (
+                        <tr
+                          class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 "
+                          key={uniqueNumber++}
+                        >
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {index + 1}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.dept}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.hostel}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.uname}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.roomNumber}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.contact}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.issue}
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {row.data.timeFrom + " - " + row.data.timeTo}
+                          </td>
+                          <td>
+                            <CrudPanel username={row.key} record={row.data} />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+
+
+
+<CrudPanel username={row.key} record={row.data} />

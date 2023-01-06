@@ -1,0 +1,10 @@
+{/* <div className="items-center justify-center flex "><img
+                  src={require("./login.png")}
+                  className="w-1/2 "
+                  alt="Login With Google"
+                /></div>
+                
+                <div className="flex flex-row items-center justify-center">
+                  
+                  <p>Login With Google</p>
+                </div> */}
